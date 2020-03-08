@@ -1,0 +1,9 @@
+{
+  "name": "json-schema-generator",
+  "version": "0.0.0",
+  "description": "",
+  "scripts": {},
+  "devDependencies": {
+    "@atlaskit/adf-schema": "^6.2.0"
+  }
+}
