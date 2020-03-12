@@ -62,6 +62,8 @@ const opts = {
   customNodeAllowsMark: (nodeType, marks = []) => {
     switch (nodeType.name) {
       case "panel":
+      case "bulletList":
+      case "orderedList":
         return [];
       default:
         return marks;
@@ -85,11 +87,43 @@ function macro(t, input) {
 //   return `${providedTitle} nodes: ${input.nodes.join(', ')} and marks: ${input.marks.join(', ')}`.trim();
 // }
 
+const marks = [
+  "link",
+  "em",
+  "strong",
+  "strike",
+  "subsup",
+  "underline",
+  "code",
+  "textColor",
+  "breakout",
+  "alignment",
+  "indentation",
+  "annotation"
+];
+
 test("Scenario 1", macro, {
   nodes: ["paragraph"],
-  marks: adfSchema.defaultSchemaConfig.marks
+  marks
 });
 test("Scenario 2", macro, {
   nodes: ["paragraph", "panel"],
-  marks: adfSchema.defaultSchemaConfig.marks
+  marks
+});
+test("Scenario 3", macro, {
+  nodes: ["paragraph", "panel", "layoutSection", "layoutColumn"],
+  marks
+});
+test("Scenario 4", macro, {
+  nodes: [
+    "paragraph",
+    "panel",
+    "layoutSection",
+    "layoutColumn",
+    "bulletList",
+    "orderedList",
+    "listItem",
+    "codeBlock"
+  ],
+  marks
 });

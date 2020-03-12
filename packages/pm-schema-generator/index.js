@@ -74,19 +74,6 @@ const generateAttrs = (type, opts) => {
 //#endregion
 
 //#region Helpers
-const fillContent = (nodeType, children) => {
-  const fragment = nodeType.contentMatch.fillBefore(children, true);
-
-  if (!fragment) {
-    return children;
-  }
-
-  const fill = fragment && fragment.size ? fragment.content : [];
-  const child = children && children.size ? children.content : [];
-
-  return ProsemirrorModel.Fragment.fromArray([...child, ...fill]);
-};
-
 const getChildNodes = (nodeMatch, nodes) => {
   const childNodes = [];
 
@@ -144,25 +131,29 @@ const generateChildNodes = (nodeType, schema, marks, opts) => {
   }
 
   const combinations = opts.attrCombinations(nodeType);
-  const content = fillContent(nodeType, children);
-
   if (combinations) {
     return ProsemirrorModel.Fragment.fromArray(
       combinations.map(combination => {
         return nodeType.createChecked(
           combination,
-          content,
+          children,
           opts.customNodeAllowsMark(nodeType, marks)
         );
       })
     );
   }
 
-  return nodeType.createChecked(
+  const node = nodeType.createAndFill(
     generateAttrs(nodeType, opts),
-    content,
+    children,
     opts.customNodeAllowsMark(nodeType, marks)
   );
+
+  if (!nodeType.validContent(node.content)) {
+    throw new Error("Invalid content for node " + nodeType.name);
+  }
+
+  return node;
 };
 //#endregion
 
