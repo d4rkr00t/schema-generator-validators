@@ -117,14 +117,28 @@ const generateChildNodes = (nodeType, schema, marks, opts) => {
 
   if (childNodes.length) {
     const allowedMarkSets = validateMarkSetsForNode(nodeType, schema, opts);
-    if (allowedMarkSets.length) {
+    let multiMarkCases = [];
+    let sinlgeCases = [];
+    childNodes.forEach(child => {
+      const validVariations = allowedMarkSets.filter(markSet => {
+        return !!opts.customNodeAllowsMark(child, markSet).length;
+      });
+
+      if (validVariations.length) {
+        multiMarkCases.push(child);
+      } else {
+        sinlgeCases.push(child);
+      }
+    });
+    if (allowedMarkSets.length && multiMarkCases.length) {
       for (let i = 0; i < allowedMarkSets.length; i++) {
         const markSet = allowedMarkSets[i] || [];
 
         children = children.append(
-          buildChildren(childNodes, schema, markSet, opts)
+          buildChildren(multiMarkCases, schema, markSet, opts)
         );
       }
+      children = children.append(buildChildren(sinlgeCases, schema, [], opts));
     } else {
       children = children.append(buildChildren(childNodes, schema, [], opts));
     }

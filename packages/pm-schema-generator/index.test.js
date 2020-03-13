@@ -64,6 +64,9 @@ const opts = {
       case "panel":
       case "bulletList":
       case "orderedList":
+      case "codeBlock":
+      case "layoutSection":
+      case "table":
         return [];
       default:
         return marks;
@@ -80,12 +83,7 @@ function macro(t, input) {
   const tree = generate(schema, opts);
   saveOutput(JSON.stringify(tree, null, 2));
   t.snapshot(tree.toJSON());
-  // t.pass();
 }
-
-// macro.title = (providedTitle = 'Creates basic document with ', input) => {
-//   return `${providedTitle} nodes: ${input.nodes.join(', ')} and marks: ${input.marks.join(', ')}`.trim();
-// }
 
 const marks = [
   "link",
@@ -124,6 +122,24 @@ test("Scenario 4", macro, {
     "orderedList",
     "listItem",
     "codeBlock"
+  ],
+  marks
+});
+
+test("Scenario 5", macro, {
+  nodes: [
+    "paragraph",
+    "panel",
+    "layoutSection",
+    "layoutColumn",
+    "bulletList",
+    "orderedList",
+    "listItem",
+    "codeBlock",
+    "table",
+    "tableCell",
+    "tableHeader",
+    "tableRow"
   ],
   marks
 });
