@@ -2,6 +2,21 @@
 # yarn lockfile v1
 
 
+"@atlaskit/adf-schema@*":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@atlaskit/adf-schema/-/adf-schema-7.0.0.tgz#10eef8aeba1c666aca3a34bc7e5ec6aa35dd1d8b"
+  integrity sha512-1CkkBz3SsH7IprxFPU/K9AXw6HleiVbfCiVXEF63TGS255Cvdn+n9zl7+vX6JtYYHwWDxgoXzPtQ7E2d1D7nFg==
+  dependencies:
+    "@types/linkify-it" "^2.0.4"
+    "@types/prosemirror-model" "^1.7.2"
+    "@types/prosemirror-state" "^1.2.0"
+    "@types/prosemirror-view" "^1.9.0"
+    css-color-names "0.0.4"
+    linkify-it "^2.0.3"
+    prosemirror-model "^1.7.0"
+    prosemirror-view "^1.9.12"
+    tslib "^1.9.3"
+
 "@atlaskit/adf-schema@^6.2.0":
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/@atlaskit/adf-schema/-/adf-schema-6.2.0.tgz#bf5d36a4ae5079aeb9d4cccf769e39bbcdb68373"
@@ -889,6 +904,11 @@ execa@^3.4.0:
     signal-exit "^3.0.2"
     strip-final-newline "^2.0.0"
 
+faker@4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/faker/-/faker-4.1.0.tgz#1e45bbbecc6774b3c195fad2835109c6d748cc3f"
+  integrity sha1-HkW7vsxndLPBlfrSg1EJxtdIzD8=
+
 fast-deep-equal@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/fast-deep-equal/-/fast-deep-equal-3.1.1.tgz#545145077c501491e33b15ec408c294376e94ae4"
@@ -1652,9 +1672,9 @@ minimatch@^3.0.4:
     brace-expansion "^1.1.7"
 
 minimist@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.0.tgz#a35008b20f41383eec1fb914f4cd5df79a264284"
-  integrity sha1-o1AIsg9BOD7sH7kU9M1d95omQoQ=
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.5.tgz#67d66014b66a6a8aaa0c083c5fd58df4e4e97602"
+  integrity sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==
 
 ms@^2.1.1, ms@^2.1.2:
   version "2.1.2"
